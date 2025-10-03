@@ -1,541 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-08-29T11:29:25.846902" rpa="false" schemaversion="5">
-<suite id="s1" name="Login Test" source="D:\robotframework\login_test">
-<suite id="s1-s1" name="Invalid login" source="D:\robotframework\login_test\Invalid_login.robot">
-<kw name="Open Browser To Login Page" owner="resource" type="SETUP">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:26.341209" level="INFO">Opening browser 'Chrome' to base url 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${LOGIN URL}</arg>
-<arg>${BROWSER}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:29:26.340826" elapsed="1.790848"/>
+<robot generator="Robot 7.3.2 (Python 3.13.7 on win32)" generated="2025-09-30T22:07:36.800955" rpa="false" schemaversion="5">
+<suite id="s1" name="CRUD test" source="D:\robotframework\CRUD_test">
+<suite id="s1-s1" name="Crud" source="D:\robotframework\CRUD_test\crud.robot">
+<kw name="Create Test User" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-30T22:07:37.054956" level="INFO">Creating Session using : alias=my_session, url=https://aod-fontend.pages.dev/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>my_session</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-30T22:07:37.054674" elapsed="0.000491"/>
 </kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-08-29T11:29:28.132025" elapsed="0.036018"/>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-30T22:07:37.055590" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-30T22:07:37.055315" elapsed="0.000308"/>
 </kw>
-<kw name="Set Selenium Speed" owner="SeleniumLibrary">
-<arg>${DELAY}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-08-29T11:29:28.168544" elapsed="0.006638"/>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-09-30T22:07:37.055910" level="INFO">${payload} = {'name': 'John Doe', 'email': 'john.doe@example.com'}</msg>
+<var>${payload}</var>
+<arg>name=John Doe</arg>
+<arg>email=john.doe@example.com</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-09-30T22:07:37.055732" elapsed="0.000206"/>
 </kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:31.218453" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:29:28.176776" elapsed="3.042035"/>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2025-09-30T22:07:37.183747" level="INFO">POST Request : url=https://aod-fontend.pages.dev/api/ 
+ path_url=/api/ 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '53'} 
+ body=b'{"name": "John Doe", "email": "john.doe@example.com"}' 
+ </msg>
+<msg time="2025-09-30T22:07:37.183833" level="INFO">POST Response : url=https://aod-fontend.pages.dev/api/ 
+ status=405, reason=Method Not Allowed 
+ headers={'Date': 'Tue, 30 Sep 2025 15:07:38 GMT', 'Content-Length': '0', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'referrer-policy': 'strict-origin-when-cross-origin', 'Vary': 'accept-encoding', 'Report-To': '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7THcFPuZ8TVZRQJRo%2FbWyuRWQ8lKNan7hQV0Qf5d%2BMp370hv2Tkg4HybfygiXZwkTqQJexQRQ93jObMMq81Kg9mMHi%2FzzEcN1dLuC%2BrWiqgBhs%2F7EqLvsie1H%2Fm9orU%3D"}]}', 'Nel': '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '9874a18b8a722709-BKK', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=None 
+ </msg>
+<msg time="2025-09-30T22:07:37.184047" level="INFO">D:\robotframework\venv\Lib\site-packages\urllib3\connectionpool.py:1097: InsecureRequestWarning: Unverified HTTPS request is being made to host 'aod-fontend.pages.dev'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2025-09-30T22:07:37.184593" level="FAIL">HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</msg>
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>/</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-30T22:07:37.056034" elapsed="0.131614">HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</status>
 </kw>
-<status status="PASS" start="2025-08-29T11:29:28.176097" elapsed="3.042988"/>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${response.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" start="2025-09-30T22:07:37.187852" elapsed="0.000051"/>
 </kw>
-<status status="PASS" start="2025-08-29T11:29:26.340196" elapsed="4.878997"/>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2025-09-30T22:07:37.188005" elapsed="0.000020"/>
 </kw>
-<test id="s1-s1-t1" name="Invalid Username" line="17">
-<kw name="Go To Login Page" owner="resource" type="SETUP">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:31.221069" level="INFO">Opening url 'https://aod-fontend.pages.dev/login'</msg>
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:29:31.220919" elapsed="3.145666"/>
+<kw name="Get Value From Json">
+<var>${user_id}</var>
+<arg>${response.json()}</arg>
+<arg>id</arg>
+<status status="NOT RUN" start="2025-09-30T22:07:37.188233" elapsed="0.000042"/>
 </kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:37.375951" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:29:34.368199" elapsed="3.007885"/>
+<kw name="Set Suite Variable" owner="BuiltIn">
+<arg>${user_id}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<status status="NOT RUN" start="2025-09-30T22:07:37.188451" elapsed="0.000040"/>
 </kw>
-<status status="PASS" start="2025-08-29T11:29:34.367058" elapsed="3.009125"/>
+<doc>ฟังก์ชันนี้จะรันอัตโนมัติก่อน test case ทุกตัว</doc>
+<status status="FAIL" start="2025-09-30T22:07:37.054242" elapsed="0.134398">HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</status>
 </kw>
-<status status="PASS" start="2025-08-29T11:29:31.220502" elapsed="6.155742"/>
-</kw>
-<kw name="Login With Invalid Credentials Should Fail">
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:37.378500" level="INFO">Typing text 'Amdin12' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:29:37.378133" elapsed="9.246052"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-08-29T11:29:37.377691" elapsed="9.246657"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:46.625144" level="INFO">Typing text '1234' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:29:46.624879" elapsed="9.153114"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-08-29T11:29:46.624546" elapsed="9.154900"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:29:55.781879" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:29:55.781631" elapsed="15.142677"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:29:55.780563" elapsed="15.143978"/>
-</kw>
-<kw name="Login Should Have Failed">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:13.933453" level="INFO">Current location is 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${ERROR URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:30:10.925210" elapsed="3.008618"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:10.924845" elapsed="3.009204"/>
-</kw>
-<arg>Amdin12</arg>
-<arg>${VALID PASSWORD}</arg>
-<status status="PASS" start="2025-08-29T11:29:37.376972" elapsed="36.557292"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:29:31.219326" elapsed="42.715663"/>
+<test id="s1-s1-t1" name="Read User" line="10">
+<doc>อ่านข้อมูล user ที่ถูกสร้างใน Suite Setup</doc>
+<status status="FAIL" start="2025-09-30T22:07:37.188823" elapsed="0.000792">Parent suite setup failed:
+HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</status>
 </test>
-<test id="s1-s1-t2" name="Invalid Password" line="18">
-<kw name="Go To Login Page" owner="resource" type="SETUP">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:13.939896" level="INFO">Opening url 'https://aod-fontend.pages.dev/login'</msg>
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:30:13.938641" elapsed="3.143607"/>
-</kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:20.092461" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:30:17.082708" elapsed="3.009888"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:17.082469" elapsed="3.010248"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:13.937464" elapsed="6.155326"/>
-</kw>
-<kw name="Login With Invalid Credentials Should Fail">
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:20.094419" level="INFO">Typing text 'Admin@gmail.com' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:30:20.094181" elapsed="9.147535"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-08-29T11:30:20.093942" elapsed="9.148104"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:29.243146" level="INFO">Typing text 'invalidv' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:30:29.242921" elapsed="9.138569"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-08-29T11:30:29.242477" elapsed="9.139845"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:38.384272" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:30:38.384102" elapsed="15.119014"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:38.383268" elapsed="15.120035"/>
-</kw>
-<kw name="Login Should Have Failed">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:56.515612" level="INFO">Current location is 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${ERROR URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:30:53.503794" elapsed="3.012073"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:53.503541" elapsed="3.012711"/>
-</kw>
-<arg>${VALID USER}</arg>
-<arg>invalidv</arg>
-<status status="PASS" start="2025-08-29T11:30:20.093441" elapsed="36.422954"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:13.936442" elapsed="42.580541"/>
+<test id="s1-s1-t2" name="Update User" line="15">
+<doc>อัปเดตข้อมูล user</doc>
+<status status="FAIL" start="2025-09-30T22:07:37.190960" elapsed="0.000904">Parent suite setup failed:
+HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</status>
 </test>
-<test id="s1-s1-t3" name="Invalid Username And Password" line="19">
-<kw name="Go To Login Page" owner="resource" type="SETUP">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:30:56.519671" level="INFO">Opening url 'https://aod-fontend.pages.dev/login'</msg>
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:30:56.519473" elapsed="3.115730"/>
-</kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:02.644342" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:30:59.635704" elapsed="3.008829"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:59.635440" elapsed="3.009193"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:56.519208" elapsed="6.125482"/>
-</kw>
-<kw name="Login With Invalid Credentials Should Fail">
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:02.646181" level="INFO">Typing text 'Amdin12' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:31:02.645989" elapsed="9.220865"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-08-29T11:31:02.645743" elapsed="9.221249"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:11.868351" level="INFO">Typing text '12345' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:31:11.867986" elapsed="9.118383"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-08-29T11:31:11.867393" elapsed="9.119110"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:20.987267" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:31:20.987069" elapsed="15.134777"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:31:20.986754" elapsed="15.135221"/>
-</kw>
-<kw name="Login Should Have Failed">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:39.134306" level="INFO">Current location is 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${ERROR URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:31:36.122431" elapsed="3.012046"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:31:36.122179" elapsed="3.012397"/>
-</kw>
-<arg>Amdin12</arg>
-<arg>12345</arg>
-<status status="PASS" start="2025-08-29T11:31:02.645271" elapsed="36.489362"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:30:56.518458" elapsed="42.616653"/>
+<test id="s1-s1-t3" name="Delete User" line="22">
+<doc>ลบ user</doc>
+<status status="FAIL" start="2025-09-30T22:07:37.193257" elapsed="0.000500">Parent suite setup failed:
+HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</status>
 </test>
-<test id="s1-s1-t4" name="Empty Username" line="20">
-<kw name="Go To Login Page" owner="resource" type="SETUP">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:39.137530" level="INFO">Opening url 'https://aod-fontend.pages.dev/login'</msg>
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:31:39.137381" elapsed="3.110210"/>
-</kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:45.256354" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:31:42.248058" elapsed="3.008560"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:31:42.247810" elapsed="3.009040"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:31:39.137119" elapsed="6.119849"/>
-</kw>
-<kw name="Login With Invalid Credentials Should Fail">
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:45.263892" level="INFO">Typing text '' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:31:45.263659" elapsed="9.115063"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-08-29T11:31:45.263134" elapsed="9.115775"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:31:54.379742" level="INFO">Typing text '1234' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:31:54.379470" elapsed="9.134129"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-08-29T11:31:54.379116" elapsed="9.134672"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:03.514469" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:32:03.514275" elapsed="15.127729"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:32:03.513984" elapsed="15.128150"/>
-</kw>
-<kw name="Login Should Have Failed">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:21.652554" level="INFO">Current location is 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${ERROR URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:32:18.642695" elapsed="3.009979"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:32:18.642356" elapsed="3.010441"/>
-</kw>
-<arg>${EMPTY}</arg>
-<arg>${VALID PASSWORD}</arg>
-<status status="PASS" start="2025-08-29T11:31:45.259100" elapsed="36.393762"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:31:39.136626" elapsed="42.516745"/>
-</test>
-<test id="s1-s1-t5" name="Empty Password" line="21">
-<kw name="Go To Login Page" owner="resource" type="SETUP">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:21.655701" level="INFO">Opening url 'https://aod-fontend.pages.dev/login'</msg>
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:32:21.655564" elapsed="3.097318"/>
-</kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:27.761434" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:32:24.753482" elapsed="3.008821"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:32:24.753149" elapsed="3.010002"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:32:21.655252" elapsed="6.107999"/>
-</kw>
-<kw name="Login With Invalid Credentials Should Fail">
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:27.765342" level="INFO">Typing text 'Admin@gmail.com' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:32:27.765131" elapsed="9.173854"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-08-29T11:32:27.764875" elapsed="9.174511"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:36.942025" level="INFO">Typing text '' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:32:36.941131" elapsed="9.123670"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-08-29T11:32:36.939917" elapsed="9.125018"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:32:46.065662" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:32:46.065481" elapsed="15.128990"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:32:46.065153" elapsed="15.129447"/>
-</kw>
-<kw name="Login Should Have Failed">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:04.206103" level="INFO">Current location is 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${ERROR URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:33:01.195049" elapsed="3.011166"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:01.194780" elapsed="3.011533"/>
-</kw>
-<arg>${VALID USER}</arg>
-<arg>${EMPTY}</arg>
-<status status="PASS" start="2025-08-29T11:32:27.764143" elapsed="36.442243"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:32:21.654766" elapsed="42.552141"/>
-</test>
-<test id="s1-s1-t6" name="Empty Username And Password" line="22">
-<kw name="Go To Login Page" owner="resource" type="SETUP">
-<kw name="Go To" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:04.209428" level="INFO">Opening url 'https://aod-fontend.pages.dev/login'</msg>
-<arg>${LOGIN URL}</arg>
-<doc>Navigates the current browser window to the provided ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:33:04.209288" elapsed="3.109428"/>
-</kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:10.326514" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:33:07.319221" elapsed="3.007429"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:07.318951" elapsed="3.007797"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:04.209039" elapsed="6.117767"/>
-</kw>
-<kw name="Login With Invalid Credentials Should Fail">
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:10.331574" level="INFO">Typing text '' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:33:10.330039" elapsed="9.115302"/>
-</kw>
-<arg>${username}</arg>
-<status status="PASS" start="2025-08-29T11:33:10.329208" elapsed="9.116410"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:19.446352" level="INFO">Typing text '' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:33:19.446122" elapsed="9.104954"/>
-</kw>
-<arg>${password}</arg>
-<status status="PASS" start="2025-08-29T11:33:19.445821" elapsed="9.105406"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:28.551854" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:33:28.551675" elapsed="15.121594"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:28.551401" elapsed="15.122050"/>
-</kw>
-<kw name="Login Should Have Failed">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:46.681322" level="INFO">Current location is 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${ERROR URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:33:43.674147" elapsed="3.007329"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:43.673629" elapsed="3.007989"/>
-</kw>
-<arg>${EMPTY}</arg>
-<arg>${EMPTY}</arg>
-<status status="PASS" start="2025-08-29T11:33:10.327549" elapsed="36.354214"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:04.208322" elapsed="42.473981"/>
-</test>
-<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-08-29T11:33:46.685720" elapsed="5.133384"/>
-</kw>
-<doc>A test suite containing tests related to invalid login.
-
-These tests are data-driven by their nature. They use a single
-keyword, specified with Test Template setting, that is called
-with different arguments to cover different scenarios.
-
-This suite also demonstrates using setups and teardowns in
-different levels.</doc>
-<status status="PASS" start="2025-08-29T11:29:25.894146" elapsed="265.925040"/>
+<status status="FAIL" start="2025-09-30T22:07:36.849695" elapsed="0.346058">Suite setup failed:
+HTTPError: 405 Client Error: Method Not Allowed for url: https://aod-fontend.pages.dev/api/</status>
 </suite>
-<suite id="s1-s2" name="Valid Login" source="D:\robotframework\login_test\valid_login.robot">
-<test id="s1-s2-t1" name="Valid Login" line="9">
-<kw name="Open Browser To Login Page" owner="resource">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:33:51.827327" level="INFO">Opening browser 'Chrome' to base url 'https://aod-fontend.pages.dev/login'.</msg>
-<arg>${LOGIN URL}</arg>
-<arg>${BROWSER}</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:33:51.826990" elapsed="4.652895"/>
-</kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-08-29T11:33:56.480310" elapsed="3.039819"/>
-</kw>
-<kw name="Set Selenium Speed" owner="SeleniumLibrary">
-<arg>${DELAY}</arg>
-<doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" start="2025-08-29T11:33:59.520403" elapsed="0.000277"/>
-</kw>
-<kw name="Login Page Should Be Open" owner="resource">
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:34:02.528738" level="INFO">Page title is 'สาธารณสุข'.</msg>
-<arg>สาธารณสุข</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2025-08-29T11:33:59.521277" elapsed="3.007732"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:59.520858" elapsed="3.008365"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:51.826506" elapsed="10.702801"/>
-</kw>
-<kw name="Input Username" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:34:02.534004" level="INFO">Typing text 'Admin@gmail.com' into text field 'xpath=//input[@placeholder="Username"]'.</msg>
-<arg>xpath=//input[@placeholder="Username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:34:02.533515" elapsed="9.204430"/>
-</kw>
-<arg>Admin@gmail.com</arg>
-<status status="PASS" start="2025-08-29T11:34:02.531647" elapsed="9.206486"/>
-</kw>
-<kw name="Input Password" owner="resource">
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:34:11.739590" level="INFO">Typing text '1234' into text field 'xpath=//input[@placeholder="Password"]'.</msg>
-<arg>xpath=//input[@placeholder="Password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:34:11.739263" elapsed="9.162892"/>
-</kw>
-<arg>1234</arg>
-<status status="PASS" start="2025-08-29T11:34:11.738592" elapsed="9.163742"/>
-</kw>
-<kw name="Submit Credentials" owner="resource">
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:34:20.904082" level="INFO">Clicking button 'css=.login-btn'.</msg>
-<arg>css=.login-btn</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-08-29T11:34:20.903735" elapsed="15.158931"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:34:20.903112" elapsed="15.159714"/>
-</kw>
-<kw name="Home Page Should Be Open" owner="resource">
-<kw name="Location Should Be" owner="SeleniumLibrary">
-<msg time="2025-08-29T11:34:39.076539" level="INFO">Current location is 'https://aod-fontend.pages.dev/home'.</msg>
-<arg>${WELCOME URL}</arg>
-<doc>Verifies that the current URL is exactly ``url``.</doc>
-<status status="PASS" start="2025-08-29T11:34:36.063925" elapsed="3.012749"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:34:36.063471" elapsed="3.013306"/>
-</kw>
-<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-08-29T11:34:39.077378" elapsed="5.117579"/>
-</kw>
-<status status="PASS" start="2025-08-29T11:33:51.825791" elapsed="52.369555"/>
-</test>
-<doc>A test suite with a single test for valid login.
-
-This test has a workflow that is created using keywords in
-the imported resource file.</doc>
-<status status="PASS" start="2025-08-29T11:33:51.820933" elapsed="52.375988"/>
-</suite>
-<status status="PASS" start="2025-08-29T11:29:25.849315" elapsed="318.349346"/>
+<status status="FAIL" start="2025-09-30T22:07:36.803471" elapsed="0.394100"/>
 </suite>
 <statistics>
 <total>
-<stat pass="7" fail="0" skip="0">All Tests</stat>
+<stat pass="0" fail="3" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="Login Test" id="s1" pass="7" fail="0" skip="0">Login Test</stat>
-<stat name="Invalid login" id="s1-s1" pass="6" fail="0" skip="0">Login Test.Invalid login</stat>
-<stat name="Valid Login" id="s1-s2" pass="1" fail="0" skip="0">Login Test.Valid Login</stat>
+<stat name="CRUD test" id="s1" pass="0" fail="3" skip="0">CRUD test</stat>
+<stat name="Crud" id="s1-s1" pass="0" fail="3" skip="0">CRUD test.Crud</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-09-30T22:07:37.051885" level="ERROR">Error in file 'D:\robotframework\CRUD_test\crud.robot' on line 3: Importing library 'JSONLibrary' failed: ModuleNotFoundError: No module named 'JSONLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  D:\robotframework\venv\Scripts\robot.exe
+  C:\Users\WIN10\AppData\Local\Programs\Python\Python313\python313.zip
+  C:\Users\WIN10\AppData\Local\Programs\Python\Python313\DLLs
+  C:\Users\WIN10\AppData\Local\Programs\Python\Python313\Lib
+  C:\Users\WIN10\AppData\Local\Programs\Python\Python313
+  D:\robotframework\venv
+  D:\robotframework\venv\Lib\site-packages</msg>
 </errors>
 </robot>

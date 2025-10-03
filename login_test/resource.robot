@@ -43,3 +43,6 @@ Submit Credentials
 
 Home Page Should Be Open
     Location Should Be    ${WELCOME URL}
+
+
+
